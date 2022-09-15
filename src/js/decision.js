@@ -60,4 +60,3 @@ export function total(objNew, [...rest]) {
   return totalArray;
 }
 export const funcTotal = total(obj, ['name', 'level', 'attack']);
-console.log(funcTotal);
