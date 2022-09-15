@@ -58,4 +58,5 @@ export function total(objNew, [...rest]) {
   const totalArray = [...oneArray, ...twoArray];
   return totalArray;
 }
-export const funcTotal = total(obj, ['name', 'level', 'attack']);
+// export const funcTotal = total(obj, ['name', 'level', 'attack']);
+// console.log(funcTotal)
