@@ -11,7 +11,6 @@ export const obj = {
 
 export function total(objNew, [...rest]) {
   const arrProm = [...rest];
-  const arrTotal = [];
 
   function f() {
     const arr = [];
