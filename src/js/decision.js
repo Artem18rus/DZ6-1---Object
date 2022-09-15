@@ -9,31 +9,28 @@ export const obj = {
   defence: 40,
 };
 
-export function func(objNew, [a, b]) {
-  const arr = [];
-  for (const key in objNew) {
-    if (a in objNew) {
-      const objectItem1 = {
-        key: a,
-        value: objNew[a],
-      };
-      arr.push(objectItem1);
-      break;
-    }
-  }
-  for (const key in objNew) {
-    if (b in objNew) {
-      const objectItem2 = {
-        key: b,
-        value: objNew[b],
-      };
-      arr.push(objectItem2);
-      break;
-    }
-  }
+export function total(objNew, [...rest]) {
+  const arrProm = [...rest];
+  const arrTotal = [];
 
-  delete objNew[a];
-  delete objNew[b];
+  function f() {
+    const arr = [];
+    for (let i = 0; arrProm.length > i; i += 1) {
+      for (const key in objNew) {
+        if (arrProm[i] in objNew) {
+          const objectItem1 = {
+            key: arrProm[i],
+            value: objNew[arrProm[i]],
+          };
+          arr.push(objectItem1);
+          break;
+        }
+      }
+      delete objNew[arrProm[i]];
+    }
+    return arr;
+  }
+  const oneArray = f();
 
   const arrSortKeys = [];
   for (const key in objNew) {
@@ -41,39 +38,26 @@ export function func(objNew, [a, b]) {
   }
   arrSortKeys.sort();
 
-  for (const key in objNew) {
-    if (arrSortKeys[0] in objNew) {
-      const objectItem1 = {
-        key: arrSortKeys[0],
-        value: objNew[arrSortKeys[0]],
-      };
-      arr.push(objectItem1);
-      break;
+  function f2() {
+    const arr2 = [];
+    for (let i = 0; arrSortKeys.length > i; i += 1) {
+      for (const key in objNew) {
+        if (arrSortKeys[i] in objNew) {
+          const objectItem2 = {
+            key: arrSortKeys[i],
+            value: objNew[arrSortKeys[i]],
+          };
+          arr2.push(objectItem2);
+          break;
+        }
+      }
     }
+    return arr2;
   }
+  const twoArray = f2();
 
-  for (const key in objNew) {
-    if (arrSortKeys[0] in objNew) {
-      const objectItem2 = {
-        key: arrSortKeys[1],
-        value: objNew[arrSortKeys[1]],
-      };
-      arr.push(objectItem2);
-      break;
-    }
-  }
-
-  for (const key in objNew) {
-    if (arrSortKeys[2] in objNew) {
-      const objectItem3 = {
-        key: arrSortKeys[2],
-        value: objNew[arrSortKeys[2]],
-      };
-      arr.push(objectItem3);
-      break;
-    }
-  }
-  return arr;
+  const totalArray = [...oneArray, ...twoArray];
+  return totalArray;
 }
-
-export const itemFunc = func(obj, ['attack', 'health']);
+export const funcTotal = total(obj, ['name', 'level', 'attack']);
+console.log(funcTotal);

@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-import { obj, func, itemFunc } from '../decision';
+import { obj, total, funcTotal } from '../decision';
 
 test('Function-OK', () => {
-  expect(itemFunc).toEqual([
-    { key: 'attack', value: 80 },
-    { key: 'health', value: 10 },
-    { key: 'defence', value: 40 },
-    { key: 'level', value: 2 },
+  expect(funcTotal).toEqual([
     { key: 'name', value: 'мечник' },
+    { key: 'level', value: 2 },
+    { key: 'attack', value: 80 },
+    { key: 'defence', value: 40 },
+    { key: 'health', value: 10 },
   ]);
 });
